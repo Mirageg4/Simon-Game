@@ -10,9 +10,18 @@ let userClickedPattern = [];
 //userChosencolor stores the id of the clicked button
 // variable contents(button clicked) are then added to the end of userClickedPattern
 $(".btn").click (function() {
-    let userChosencolor = $(this).attr("id");
+    let userChosenColor = $(this).attr("id");
 
-    userClickedPattern.push(userChosencolor);
+    userClickedPattern.push(userChosenColor);
+
+    //check to see if button click builds array
+    //console.log(userClickedPattern); 
+    
+    //play sound same way as nextSequence
+    playSound(userChosenColor);
+
+    animatePress(userChosenColor);
+    
 });
 
 // Generate Random # between 0 & 3, and store in randomNumber 
@@ -26,9 +35,24 @@ function nextSequence(){
 //Select the button with the same id as randomChosenColor
 $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
 
+
+playSound(randomChosenColor);
+}
+
+function playSound(name) {
 //play sound for button selected
-let audio = newAudio("sounds/" + randomChosenColor + ".mp3"); audio.play();
-  
+let audio = newAudio("sounds/" + name + ".mp3"); 
+audio.play(); 
+}
+//add pressed class to clicked button
+function animatePress(currentColor) {
+$("#" +currentColor).addClass("pressed");
+
+//remove pressed class to clicked button after 100 milliseconds
+setTimeout(function () {
+    $("#" +currentColor).removeClass("pressed");
+}, 100);
+
 }
 
 
