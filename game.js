@@ -6,6 +6,21 @@ let gamePattern = [];
 
 let userClickedPattern = [];
 
+//keep track of game start. nextSquence() only called on first kepress
+let started = false;
+
+let level = 0;
+
+//jQuery detects keypress... 1st keypress calls nextSequence()
+//h1 title changes to Level 0
+$(document).keypress(function() { 
+if(!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+}
+});
+
 //jQuery detects button click to trigger the handler function
 //userChosencolor stores the id of the clicked button
 // variable contents(button clicked) are then added to the end of userClickedPattern
