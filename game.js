@@ -1,43 +1,39 @@
 'use strict';
 
-const buttonColors = ['red', 'blue', 'green', 'yellow'];
+var buttonColors = ['red', 'blue', 'green', 'yellow'];
 
-let gamePattern = [];
+var gamePattern = [];
 
-let userClickedPattern = [];
+var userClickedPattern = [];
 
 //keep track of game start. nextSquence() only called on first kepress
-let started = false;
-
-let level = 0;
+var started = false;
+var level = 0;
 
 //jQuery detects keypress... 1st keypress calls nextSequence()
 //h1 title changes to Level 0
 $(document).keypress(function() { 
-if(!started) {
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-}
+    if(!started) {
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        started = true;
+    }
 });
 
 //jQuery detects button click to trigger the handler function
 //userChosencolor stores the id of the clicked button
 // variable contents(button clicked) are then added to the end of userClickedPattern
+
 $(".btn").click (function() {
-    let userChosenColor = $(this).attr("id");
-
+    var userChosenColor = $(this).attr("id");
     userClickedPattern.push(userChosenColor);
-
-    //check to see if button click builds array
-    //console.log(userClickedPattern); 
     
     //play sound same way as nextSequence
     playSound(userChosenColor);
     animatePress(userChosenColor);
-// Call checkAnswer() after a user has clicked and chosen an answer, passing in the index of the last answer in the user's sequence.
-    checkAnswer(userClickedPattern.length-1);
     
+    // Call checkAnswer() after a user has clicked and chosen an answer, passing in the index of the last answer in the user's sequence.
+    checkAnswer(userClickedPattern.length-1);  
 });
 
 function checkAnswer(currentLevel) {
@@ -46,7 +42,7 @@ function checkAnswer(currentLevel) {
 
         //If the the most recent answer is right above, then check that they have finished their sequence with another if statement.
 
-        if(userClickedPattern.length === gamePattern.length) {
+        if (userClickedPattern.length === gamePattern.length) {
 
         //Call nextSequence() after a 1000 millisecond delay.
         setTimeout(function () {
@@ -81,31 +77,30 @@ function nextSequence () {
 
 // Generate Random # between 0 & 3, and store in randomNumber 
     //let randomNumber = Math.trunc(Math.random) * 3 + 1;
-    let randomNumber = Math.floor(Math.random() * 4);
+    var randomNumber = Math.floor(Math.random() * 4);
 
 //the random number above selects a color and adds to gamePattern array
-    let randomChosenColor = buttonColors[randomNumber];
+    var randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
 
 //Select the button with the same id as randomChosenColor
 $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
-
-
 playSound(randomChosenColor);
 }
+
 //add pressed class to clicked button
 function animatePress(currentColor) {
-    $("#" +currentColor).addClass("pressed");
+    $("#" + currentColor).addClass("pressed");
     
     //remove pressed class to clicked button after 100 milliseconds
     setTimeout(function () {
-        $("#" +currentColor).removeClass("pressed");
+        $("#" + currentColor).removeClass("pressed");
     }, 100);
     }
 
 function playSound(name) {
 //play sound for button selected
-let audio = newAudio("sounds/" + name + ".mp3"); 
+var audio = newAudio("sounds/" + name + ".mp3"); 
 audio.play(); 
 }
 
