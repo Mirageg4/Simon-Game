@@ -34,10 +34,40 @@ $(".btn").click (function() {
     
     //play sound same way as nextSequence
     playSound(userChosenColor);
-
     animatePress(userChosenColor);
+// Call checkAnswer() after a user has clicked and chosen an answer, passing in the index of the last answer in the user's sequence.
+    checkAnswer(userClickedPattern.length-1);
     
 });
+
+function checkAnswer(currentLevel) {
+    //Check if most recent user answer is the same as the game pattern. If so, then log "success", otherwise log "wrong".
+    if(gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        console.log("success");
+
+        //If the the most recent answer is right above, then check that they have finished their sequence with another if statement.
+
+        if(userClickedPattern.length === gamePattern.length) {
+
+        //Call nextSequence() after a 1000 millisecond delay.
+        setTimeout(function () {
+            nextSequence();
+        }, 1000);
+
+        }
+    }   else {
+        console.log("wrong");
+    }
+}
+
+function nextSequence () {
+
+    //Once nextSequence() is triggered, reset the userClickedPattern to an empty array ready for the next level.
+    userClickedPattern = [];
+
+    level++;
+    $("#level-title").text("Level " + level);
+}
 
 // Generate Random # between 0 & 3, and store in randomNumber 
 function nextSequence(){
