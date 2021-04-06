@@ -1,19 +1,19 @@
 'use strict';
 
-var buttonColors = ['red', 'blue', 'green', 'yellow'];
+let buttonColors = ["red", "blue", "green", "yellow"];
 
-var gamePattern = [];
+let gamePattern = [];
 
-var userClickedPattern = [];
+let userClickedPattern = [];
 
 //keep track of game start. nextSquence() only called on first kepress
-var started = false;
-var level = 0;
+let started = false;
+let level = 0;
 
 //jQuery detects keypress... 1st keypress calls nextSequence()
 //h1 title changes to Level 0
 $(document).keypress(function() { 
-    if(!started) {
+    if (!started) {
         $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
@@ -22,10 +22,10 @@ $(document).keypress(function() {
 
 //jQuery detects button click to trigger the handler function
 //userChosencolor stores the id of the clicked button
-// variable contents(button clicked) are then added to the end of userClickedPattern
+// letiable contents(button clicked) are then added to the end of userClickedPattern
 
 $(".btn").click (function() {
-    var userChosenColor = $(this).attr("id");
+    let userChosenColor = $(this).attr("id");
     userClickedPattern.push(userChosenColor);
     
     //play sound same way as nextSequence
@@ -76,11 +76,11 @@ function nextSequence () {
     $("#level-title").text("Level " + level);
 
 // Generate Random # between 0 & 3, and store in randomNumber 
-    //let randomNumber = Math.trunc(Math.random) * 3 + 1;
-    var randomNumber = Math.floor(Math.random() * 4);
+    let randomNumber = Math.trunc(Math.random() * 3 + 1);
+    //let randomNumber = Math.floor(Math.random() * 4);
 
 //the random number above selects a color and adds to gamePattern array
-    var randomChosenColor = buttonColors[randomNumber];
+    let randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
 
 //Select the button with the same id as randomChosenColor
@@ -100,7 +100,7 @@ function animatePress(currentColor) {
 
 function playSound(name) {
 //play sound for button selected
-var audio = newAudio("sounds/" + name + ".mp3"); 
+let audio = new Audio("sounds/" + name + ".mp3"); 
 audio.play(); 
 }
 
