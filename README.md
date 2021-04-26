@@ -1,6 +1,6 @@
 <h1>Simon Game</h1>
 <h2>John Manouse</h2>
-<p>This is a game where you can test your memory skills. Once you press a colored key, the game is started. A sequence of colors will be displayed, and the object is to repeat the pattern. The first patterns will be easy, and become more difficult as the game continues. Lights & sound accompany the game to make it more fun. Good Luck! </p>
+<p>This is a game where you can test your memory skills. Once you press a keyboard key, the game is started. A sequence of colors will be displayed, and the object is to repeat the pattern. The first patterns will be easy, and become more difficult as the game continues. If you incorrectly repeat the pattern, the background will flash red. Lights & sound accompany the game to make it more fun. Good Luck! </p>
  <hr>
 <h2>Fun Game Design</h2>
 <ul>
